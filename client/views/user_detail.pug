@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1= title
+  table 
+    tr 
+      th Name
+      th FirstName
+      th LastName
+    tr 
+      td= user.username 
+      td= user.firstName 
+      td= user.lastName

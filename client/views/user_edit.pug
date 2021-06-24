@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1= title
+  form(action='/edit', method='POST')
+    p
+      label Username
+      input(type='text', name='username', value=user.username)
+      label First Name
+      input(type='text', name='firstName', value=user.firstName)
+      label Last Name
+      input(type='text', name='lastName', value=user.lastName)
+    input(type='submit', value='Submit')
