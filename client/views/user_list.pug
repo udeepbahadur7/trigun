@@ -1,8 +1,25 @@
 extends layout
 
 block content
-  h1= title
-  ul
-  for user in users
-    a(href=`${user.username}`)
-      li= `${user.firstName} ${user.lastName}`   
+  h1(class="text-lg text-gray-700")= title
+  a(href="create") Create User
+  table(class="table-auto")
+    thead
+      tr(class="bg-blue-100")
+        th(class="w-1/2 text-left") Username
+        th(class="w-1/4 text-left") First Name
+        th(class="w-1/4 text-left") Last Name
+        th(class="w-1/4 text-left") Actions 
+    tbody
+    for user in users
+      tr(class="bg-blue-200")
+        td(class="w-1/2")=`${user.username}` 
+        td(class="w-1/4")= `${user.firstName}`   
+        td(class="w-1/4")= `${user.lastName}`   
+        td(class="w-1/4 flex flex-row justify-around min-w-full")
+            a(href=`${user.username}`)
+              i(class="fas fa-eye")
+            a(href=`edit/${user.username}`)
+              i(class="fas fa-edit")
+            i(class="fas fa-trash flex items-center", onClick=`handleDelete("${user.username}")`)
+

@@ -2,12 +2,14 @@ extends layout
 
 block content
   h1= title
-  form(action='/create', method='POST')
-    p
-      label Username
-      input(type='text', name='username', value='')
-      label First Name
-      input(type='text', name='firstName', value='')
-      label Last Name
-      input(type='text', name='lastName', value='')
-    input(type='submit', value='Submit')
+  form(action='/create', method='POST', class="bg-white shadow-md px-8 pt-6")
+    div(class="mb-4")
+      label(class="block text-gray-700 text-sm font-bold mb-2", for="username") Username
+      input(type='text', name='username', value='', class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username")
+    div(class="mb-4")
+      label(class="block text-gray-700 text-sm font-bold mb-2", for="firstName") First Name
+      input(type='text', name='firstName', value='', class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username")
+    div(class="mb-4")
+      label(class="block text-gray-700 text-sm font-bold mb-2", for="lastName") Last Name
+      input(type='text', name='lastName', value='', class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username")
+    input(type='submit', value='Submit', class="px-4 py-2 bg-blue-500 align-baseline text-gray-800 font-bold hover:text-blue-800")

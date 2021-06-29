@@ -1,13 +1,11 @@
 extends layout
 
 block content
-  h1= title
-  table 
-    tr 
-      th Name
-      th FirstName
-      th LastName
-    tr 
-      td= user.username 
-      td= user.firstName 
-      td= user.lastName
+  h1(class="text-lg text-gray-700")= title
+
+  div(class="flex flex-col border-2 mx-auto max-w-md")
+    h3(class="p-3")= user.username
+    hr
+    div(class="p-2  flex flex-row flex-grow")
+      span(class="flex-grow")= user.firstName 
+      span(class="flex-grow")= user.lastName
