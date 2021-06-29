@@ -67,30 +67,56 @@ router.post('/edit', async function (req, res, next) {
 })
 
 router.get('/create', function (req, res, next) {
-  res.render('user_create');
+  try {
+    res.render('user_create');
+  } catch (err) {
+    console.error(err);
+    console.error(err.stack);
+    return res.render('error', {
+      message: 'Error loading template})
+    })
+  }
 });
 
 router.post('/create', async function (req, res, next) {
-  console.log(req.body);
-  const { username, firstName, lastName } = req.body;
-  await createUser({ username, firstName, lastName });
-  return res.redirect("/");
+  try {
+    console.log(req.body);
+    const { username, firstName, lastName } = req.body;
+    await createUser({ username, firstName, lastName });
+    return res.redirect("/");
+  } catch (err) {
+    console.error(err);
+    console.error(err.stack);
+    return res.render('error', { message: 'Error creating user' })
+  }
 
 })
 
 /* GET home page. */
 router.get('/', async function (req, res, next) {
-  const users = await getUserList();
-  console.log(JSON.stringify(users, null, 2));
-  res.render('user_list', { user_list: 'Express', users, title: "User List" });
+  try {
+    const users = await getUserList();
+    console.log(JSON.stringify(users, null, 2));
+    res.render('user_list', { user_list: 'Express', users, title: "User List" });
+  } catch (err) {
+    console.error(err);
+    console.error(err.stack);
+    return res.render('error', { message: 'Error getting user detail' })
+  }
 });
 
 router.get('/:username', async function (req, res, next) {
-  console.log(JSON.stringify(req.params))
-  const { username } = req.params;
-  const user = await getUserDetail(username);
-  console.log(user);
-  res.render('user_detail', { user, title: "User Detail" });
+  try {
+    console.log(JSON.stringify(req.params))
+    const { username } = req.params;
+    const user = await getUserDetail(username);
+    console.log(user);
+    res.render('user_detail', { user, title: "User Detail" });
+  } catch (err) {
+    console.error(err);
+    console.error(err.stack);
+    return res.render('error', { message: 'Error getting user detail' })
+  }
 });
 
 router.delete('/:username', async function (req, res, next) {
@@ -102,7 +128,7 @@ router.delete('/:username', async function (req, res, next) {
   } catch (err) {
     console.error(err);
     console.error(err.stack);
-    return res.render('error', {message: "Something went wrong"})
+    return res.render('error', { message: "Something went wrong" })
   }
 })
 
